@@ -31,10 +31,10 @@
 	</bean>
 	
 	<!-- 开启注解扫描 -->
-	<context:component-scan base-package="com.game.jhtc"/>
+	<context:component-scan base-package="com.game.jhtc" />
 	
 	<!-- 开启RequestMapping注解 -->
-	<mvc:annotation-driven/>
+	<mvc:annotation-driven />
 	
 	<!-- 处理请求转发 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

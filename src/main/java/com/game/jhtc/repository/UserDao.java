@@ -15,10 +15,10 @@ public interface UserDao {
 
 	List<User> findAll();
 	
-	void save(User user);
+	/*void save(User user);
 	
 	User findById(int id);
 	
 	void update(User user);
-	
+	*/
 }

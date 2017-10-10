@@ -13,12 +13,12 @@ import com.game.jhtc.entity.User;
 @MyBatisRepository
 public interface UserDao {
 
-	List<User> findAll();
+	public List<User> findAll();
 	
-	void save(User user);
+	public void save(User user);
 	
-	User findById(int id);
+	public User findById(int id);
 	
-	void update(User user);
+	public void update(User user);
 	
 }

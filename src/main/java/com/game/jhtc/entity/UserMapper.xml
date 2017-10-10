@@ -9,30 +9,24 @@
   </select>
   
   <!-- 保存一条用户数据 -->
- <!--  <insert id="save"
-  	parameterMap="com.game.jhtc.entity.User">
-  	insert into suser_info values(
-  		#{uid},
-  		#{gid},
-  		#{nick},
-  		#{score}
-  	)	
-  </insert> -->
+  <insert id="save"
+  	parameterType="com.game.jhtc.entity.User">
+  	insert into suser_info (uid,gid,nick,score)
+  		values(#{uid}, #{gid}, #{nick}, #{score})	
+  </insert>
   
   <!-- 根据gid查询用户 -->
-<!--   <select id="findById"
+  <select id="findById"
   	parameterType="java.lang.Integer"
   	resultType="com.game.jhtc.entity.User">
   		select * from suser_info where gid=#{gid}
-  </select> -->
+  </select>
   
- <!--  修改用户数据 -->
-<!--   <update id="update" parameterType="com.game.jhtc.entity.User">
-  	update s suser_info set
-  		gid=#{gid},
-  		nick=#{nick},
-  		score=#{score}
-  	where uid=#{uid}
-  </update> -->
+ <!--  根据gid修改用户数据 -->
+  <update id="update" parameterType="com.game.jhtc.entity.User">
+  	update suser_info set
+  		nick=#{nick} where
+  		 gid=#{gid}
+  </update>
   
 </mapper>

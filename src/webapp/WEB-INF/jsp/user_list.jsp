@@ -3,12 +3,13 @@
 <html>
   <head>
     <title>user_list</title>
+  	<script type="text/javascript" src="../js/jquery.js"></script>
   </head>
   
 <body>
 	<div align="center">
 		<input type="button" value="新增" 
-		onclick="locaton.href='toAddUser.do'"/>
+		onclick="locaton.href='addUser.do'"/>
 	</div>	
 	<table width="60%" border="1" cellpadding="2" cellspacing="0" align="center">
 		<tr>
@@ -25,7 +26,7 @@
 				<td>${user.score }</td>
 				<td>
 					<input type="button" value="修改" 
-		onclick="locaton.href='toUpdateUser.do?gid=${user.gid}'"/>
+		onclick="locaton.href='updateUser.do?gid=${user.gid}'"/>
 				</td>
 			</tr>
 		</c:forEach>

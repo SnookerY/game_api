@@ -36,7 +36,7 @@ public class UserController {
 	/**
 	 * 打开新增页面
 	 */
-	@RequestMapping("addUser.do")
+	@RequestMapping("/toAddUser.do")
 	public String toAdd(){
 		return "add_user";
 	}
@@ -50,10 +50,11 @@ public class UserController {
 		return "redirect:findUser.do";
 	}
 	
+	
 	/**
 	 * 打开修改页面
 	 */
-	@RequestMapping("updateUser.do")
+	@RequestMapping("toUpdateUser.do")
 	public String toUpdate(
 			@RequestParam("gid") int gid, Model model){
 		User user = userDao.findById(gid);

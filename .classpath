@@ -49,5 +49,6 @@
 	<classpathentry kind="lib" path="src/webapp/WEB-INF/lib/hibernate-validator-5.2.4.Final.jar"/>
 	<classpathentry kind="lib" path="src/webapp/WEB-INF/lib/jboss-logging-3.3.1.Final.jar"/>
 	<classpathentry kind="lib" path="src/webapp/WEB-INF/lib/classmate-1.0.0.jar"/>
+	<classpathentry kind="lib" path="src/webapp/WEB-INF/lib/jackson-core-2.6.2.jar"/>
 	<classpathentry kind="output" path="src/webapp/WEB-INF/classes"/>
 </classpath>

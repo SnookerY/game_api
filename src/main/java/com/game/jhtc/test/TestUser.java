@@ -2,10 +2,12 @@ package com.game.jhtc.test;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.alibaba.fastjson.JSON;
 import com.game.jhtc.entity.User;
 import com.game.jhtc.repository.UserDao;
 
@@ -15,6 +17,8 @@ import com.game.jhtc.repository.UserDao;
  *
  */
 public class TestUser {
+	
+	private static Logger logger = Logger.getLogger(TestUser.class);
 
 	/**
 	 * 测试查询全部
@@ -26,7 +30,7 @@ public class TestUser {
 		UserDao dao = ac.getBean(UserDao.class);
 		List<User> list = dao.findAll();
 		for(User user : list){
-			System.out.println(
+			logger.info(
 					user.getUid() + " " +
 					user.getGid() + " " +
 					user.getNick() + " " +
@@ -43,7 +47,7 @@ public class TestUser {
 		String conf = "applicationContext.xml";
 		ApplicationContext ac = new ClassPathXmlApplicationContext(conf);
 		UserDao dao = ac.getBean(UserDao.class);
-		System.out.println(dao.findById(2));
+		logger.info(dao.findById(2));
 	}
 	
 	/**
@@ -61,7 +65,7 @@ public class TestUser {
 		user.setNick("乐芙兰");
 		user.setScore(110);
 		dao.save(user);
-		System.out.println(dao.findById(6));
+		logger.info(dao.findById(6));
 		
 	}
 	
@@ -78,6 +82,18 @@ public class TestUser {
 		user.setGid(6);
 		user.setNick("乐芙兰");
 		dao.update(user);
-		System.out.println(dao.findById(6));
+		logger.info(dao.findById(6));
+	}
+	
+	/**
+	 * 测试json
+	 */
+	@Test
+	public void testJson(){
+		String conf = "applicationContext.xml";
+		ApplicationContext ac = new ClassPathXmlApplicationContext(conf);
+		UserDao dao = ac.getBean(UserDao.class);
+		User user = dao.findById(1);
+		logger.info(JSON.toJSONString(user));
 	}
 }

@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.game.jhtc.entity.User;
 import com.game.jhtc.repository.UserDao;
 
+/**
+ * 解析到视图（jsp）与接口无关
+ * @author snooker
+ *
+ */
 @Controller
 @RequestMapping("/user")
 public class UserController {

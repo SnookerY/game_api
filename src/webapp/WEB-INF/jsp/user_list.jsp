@@ -4,12 +4,12 @@
   <head>
     <title>user_list</title>
   	<script type="text/javascript" src="../js/jquery.js"></script>
+  	<!-- <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script> -->
   </head>
   
 <body>
 	<div align="center">
-		<input type="button" value="新增" 
-		onclick="locaton.href='toAddUser.do'"/>
+		<input type="button" value="新增" onclick="locaton.href='toAdd'"/>
 	</div>	
 	<table width="60%" border="1" cellpadding="2" cellspacing="0" align="center">
 		<tr>
@@ -26,7 +26,7 @@
 				<td>${user.score }</td>
 				<td>
 					<input type="button" value="修改" 
-		onclick="locaton.href='toUpdateUser.do?gid=${user.gid}'"/>
+		onclick="locaton.href='toUpdate/${user.gid}'"/>
 				</td>
 			</tr>
 		</c:forEach>

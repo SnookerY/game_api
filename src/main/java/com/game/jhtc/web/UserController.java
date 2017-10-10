@@ -7,8 +7,11 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.game.jhtc.entity.User;
 import com.game.jhtc.repository.UserDao;
@@ -20,12 +23,7 @@ public class UserController {
 	@Resource
 	private UserDao userDao;
 	
-	@Autowired
-	public void setUserDao(UserDao userDao) {
-		this.userDao = userDao;
-	}
-	
-	@RequestMapping("/findUser.do")
+	@RequestMapping(value="/find", method=RequestMethod.GET)
 	public String find(Model model){
 		
 		List<User> list = userDao.findAll();
@@ -36,7 +34,7 @@ public class UserController {
 	/**
 	 * 打开新增页面
 	 */
-	@RequestMapping("/toAddUser.do")
+	@RequestMapping(value="/toAdd",method=RequestMethod.GET)
 	public String toAdd(){
 		return "add_user";
 	}
@@ -44,19 +42,20 @@ public class UserController {
 	/**
 	 * 新增保存
 	 */
-	@RequestMapping("/addUser.do")
+	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public String add(User user){
 		userDao.save(user);
-		return "redirect:findUser.do";
+		return "redirect:find";
 	}
 	
 	
 	/**
 	 * 打开修改页面
 	 */
-	@RequestMapping("toUpdateUser.do")
+	@RequestMapping(value="/toUpdate/{gid}",method=RequestMethod.GET)
 	public String toUpdate(
-			@RequestParam("gid") int gid, Model model){
+			@PathVariable("gid") Integer gid, 
+			Model model){
 		User user = userDao.findById(gid);
 		model.addAttribute("user", user);
 		return "update_user";
@@ -65,9 +64,10 @@ public class UserController {
 	/**
 	 * 修改保存
 	 */
-	@RequestMapping("updateUser.do")
-	public String update(User user){
+	@RequestMapping(value="/upadte",method=RequestMethod.PUT)
+	@ResponseBody
+	public boolean update(@RequestBody User user){
 		userDao.update(user);
-		return "redirect:findUser.do";
+		return true;
 	}
 }

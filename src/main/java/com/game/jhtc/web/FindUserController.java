@@ -3,6 +3,7 @@ package com.game.jhtc.web;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +25,15 @@ public class FindUserController {
 	private UserDao userDao;
 
 	/**Spring MVC RESTful JSON**/
-	@RequestMapping(value="/queryUser", method = RequestMethod.GET)
+	@RequestMapping(value="/view/{gid}", method = RequestMethod.GET)
+	@ResponseBody
+	public User view(@PathVariable Integer gid){
+		
+		System.out.println("gid:" + gid);
+		return userDao.findById(gid);
+	}
+	
+	@RequestMapping(value="/query", method = RequestMethod.GET)
 	@ResponseBody
 	public User queryUser(@RequestParam(value="gid",required=true) Integer gid){
 		

@@ -50,5 +50,7 @@
 	<classpathentry kind="lib" path="src/webapp/WEB-INF/lib/jboss-logging-3.3.1.Final.jar"/>
 	<classpathentry kind="lib" path="src/webapp/WEB-INF/lib/classmate-1.0.0.jar"/>
 	<classpathentry kind="lib" path="src/webapp/WEB-INF/lib/jackson-core-2.6.2.jar"/>
+	<classpathentry kind="lib" path="src/webapp/WEB-INF/lib/jackson-annotations-2.6.2.jar"/>
+	<classpathentry kind="lib" path="src/webapp/WEB-INF/lib/jackson-databind-2.6.2.jar"/>
 	<classpathentry kind="output" path="src/webapp/WEB-INF/classes"/>
 </classpath>

@@ -43,4 +43,7 @@
 		<property name="prefix" value="/WEB-INF/jsp/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
+	
+	<!-- 支持RESTfuk访问静态资源 -->
+	<mvc:default-servlet-handler/>
 </beans>

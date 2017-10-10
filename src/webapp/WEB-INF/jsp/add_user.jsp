@@ -6,7 +6,7 @@
   </head>
   
 <body>
-	<form action="addUser.do"" method="post">
+	<form action="add" method="post">
 		<table width="40%" border="1" cellpadding="2" cellspacing="0" align="center">
 			<tr>
 				<td>唯一码:</td>

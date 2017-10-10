@@ -86,7 +86,7 @@ public class TestUser {
 	}
 	
 	/**
-	 * 测试json
+	 * 测试json转化
 	 */
 	@Test
 	public void testJson(){

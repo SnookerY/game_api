@@ -5,8 +5,12 @@
     <title>user_list</title>
   </head>
   
-<body>	
-	<table width="60%" border="1" cellpadding="2" cellspacing="0">
+<body>
+	<div align="center">
+		<input type="button" value="新增" 
+		onclick="locaton.href='toAddUser.do'"/>
+	</div>	
+	<table width="60%" border="1" cellpadding="2" cellspacing="0" align="center">
 		<tr>
 			<th>唯一码</th>
 			<th>游戏id</th>
@@ -19,6 +23,10 @@
 				<td>${user.gid }</td>
 				<td>${user.nick }</td>
 				<td>${user.score }</td>
+				<td>
+					<input type="button" value="修改" 
+		onclick="locaton.href='toUpdateUser.do?gid=${user.gid}'"/>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>

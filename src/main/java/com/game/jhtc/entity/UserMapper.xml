@@ -9,7 +9,7 @@
   </select>
   
   <!-- 保存一条用户数据 -->
-<!--   <insert id="save"
+ <!--  <insert id="save"
   	parameterMap="com.game.jhtc.entity.User">
   	insert into suser_info values(
   		#{uid},
@@ -26,8 +26,8 @@
   		select * from suser_info where gid=#{gid}
   </select> -->
   
-  <!-- 修改用户数据 -->
-  <!-- <update id="update" parameterType="com.game.jhtc.entity.User">
+ <!--  修改用户数据 -->
+<!--   <update id="update" parameterType="com.game.jhtc.entity.User">
   	update s suser_info set
   		gid=#{gid},
   		nick=#{nick},

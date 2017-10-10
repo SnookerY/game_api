@@ -39,6 +39,6 @@
 	<!-- 处理请求转发 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/"/>
-		<property name="suffix" value=".jsp"></property>
+		<property name="suffix" value=".jsp"/>
 	</bean>
 </beans>

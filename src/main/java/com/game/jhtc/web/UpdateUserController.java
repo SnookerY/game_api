@@ -1,5 +1,6 @@
 package com.game.jhtc.web;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,42 +12,34 @@ import com.game.jhtc.entity.User;
 import com.game.jhtc.repository.UserDao;
 
 /**
- * 用户查询接口
+ * 用户修改接口
  * @author snooker
- * @create 2017-10-10
+ * @create 2017-10-11
  */
 @Controller
 @RequestMapping("/snake")
-public class FindUserController {
+public class UpdateUserController {
 
 	@Autowired
 	private UserDao userDao;
 
 	/**Spring MVC RESTful JSON**/
 	/**
-	 * 根据玩家id查询玩家rank信息
+	 * 根据玩家id修改玩家昵称信息
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value="/queryId", method = RequestMethod.GET)
+	@RequestMapping(value="/updateUser", produces = "application/text;charset=UTF-8", method = RequestMethod.POST)
 	@ResponseBody
-	public User queryUser(@RequestParam(value="id",required=true) Integer id){
+	public String queryUser(@RequestParam(value="id",required=true) Integer id,
+							@RequestParam(value="nick",required=true) String nick){
 		
-		System.out.println("id:" + id);
-		return userDao.findById(id);
-	}
-	
-	/**
-	 * 根据玩家uid查询玩家gid
-	 * @param uid
-	 * @return
-	 */
-	@RequestMapping(value="/queryUid", method = RequestMethod.POST)
-	@ResponseBody
-	public User queryGid(@RequestParam(value="uid",required=true) String uid){
+		User user = new User();
+		user.setId(id);
+		user.setNick(nick);
 		
-		System.out.println("uid:" + uid);
-		return userDao.findByUid(uid);
+		userDao.update(user);
+		return "200";
 	}
 	
 }

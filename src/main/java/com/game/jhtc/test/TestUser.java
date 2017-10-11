@@ -64,7 +64,7 @@ public class TestUser {
 		user.setNick("霞");
 		user.setScore(98);
 		user.setLength(1500000);
-		dao.save(user);
+		dao.saveUser(user);
 		//logger.info(dao.findById(6));
 		
 	}

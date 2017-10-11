@@ -13,9 +13,17 @@ import com.game.jhtc.entity.User;
 @MyBatisRepository
 public interface UserDao {
 
+	/**
+	 * 查询用户全部信息
+	 * @return
+	 */
 	public List<User> findAll();
 	
-	public void save(User user);
+	/**
+	 * 根据请求参数保存用户信息
+	 * @param users
+	 */
+	public void saveUser(User users);
 	
 	/**
 	 * 根据gid查询用户信息
@@ -31,6 +39,10 @@ public interface UserDao {
 	 */
 	public User findByUid(String uid);
 	
+	/**
+	 * 根据id修改玩家昵称nick
+	 * @param user
+	 */
 	public void update(User user);
 	
 }

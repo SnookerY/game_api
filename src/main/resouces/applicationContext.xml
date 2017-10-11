@@ -35,7 +35,13 @@
 	<context:component-scan base-package="com.game.jhtc" />
 	
 	<!-- 开启RequestMapping注解 -->
-	<mvc:annotation-driven />
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<constructor-arg value="UTF-8" />
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 	
 	<!-- 处理请求转发 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

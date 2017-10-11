@@ -5,11 +5,11 @@
   
   <!-- 查询全部的用户 -->
   <select id="findAll" resultType="com.game.jhtc.entity.User">
-    select * from suser_info where 1=1
+    select * from suser_info where 1=1 order by score desc
   </select>
   
-  <!-- 保存一条用户数据 -->
-  <insert id="save"
+  <!-- 用户数据上报接口 -->
+  <insert id="saveUser"
   	parameterType="com.game.jhtc.entity.User">
   	insert into suser_info (id, uid, nick, score, length)
   		values(#{id}, #{uid}, #{nick}, #{score},#{length})	
@@ -31,7 +31,7 @@
   			where uid=#{uid}
   </select>
   
- <!--  根据gid修改用户数据 -->
+ <!--  根据玩家id修改用户数据 -->
   <update id="update" parameterType="com.game.jhtc.entity.User">
   	update suser_info set
   		nick=#{nick} where

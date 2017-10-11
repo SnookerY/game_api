@@ -60,12 +60,12 @@ public class TestUser {
 		ApplicationContext ac = new ClassPathXmlApplicationContext(conf);
 		UserDao dao = ac.getBean(UserDao.class);
 		User user = new User();
-		user.setUid("xxs516");
-		user.setGid(6);
-		user.setNick("乐芙兰");
-		user.setScore(110);
+		user.setUid("xsdsda6");
+		user.setNick("霞");
+		user.setScore(98);
+		user.setLength(1500000);
 		dao.save(user);
-		logger.info(dao.findById(6));
+		//logger.info(dao.findById(6));
 		
 	}
 	
@@ -89,11 +89,23 @@ public class TestUser {
 	 * 测试json转化
 	 */
 	@Test
-	public void testJson(){
+	public void testFindById(){
 		String conf = "applicationContext.xml";
 		ApplicationContext ac = new ClassPathXmlApplicationContext(conf);
 		UserDao dao = ac.getBean(UserDao.class);
 		User user = dao.findById(1);
+		logger.info(JSON.toJSONString(user));
+	}
+	
+	/**
+	 * 测试json转化
+	 */
+	@Test
+	public void testFindByUid(){
+		String conf = "applicationContext.xml";
+		ApplicationContext ac = new ClassPathXmlApplicationContext(conf);
+		UserDao dao = ac.getBean(UserDao.class);
+		User user = dao.findByUid("xsdsda6");
 		logger.info(JSON.toJSONString(user));
 	}
 }

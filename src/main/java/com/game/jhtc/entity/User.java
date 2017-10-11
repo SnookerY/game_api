@@ -7,11 +7,19 @@ package com.game.jhtc.entity;
  */
 public class User {
 
+	private Integer id;//玩家id
 	private String uid;//唯一码
 	private Integer gid;//游戏id
 	private String nick;//玩家昵称
-	private Integer score;//分数
+	private Integer score;//玩家分数
+	private Integer length;//贪吃蛇长度
 	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getUid() {
 		return uid;
 	}
@@ -35,6 +43,13 @@ public class User {
 	}
 	public void setScore(Integer score) {
 		this.score = score;
+	}
+	
+	public Integer getLength() {
+		return length;
+	}
+	public void setLength(Integer length) {
+		this.length = length;
 	}
 	
 	@Override

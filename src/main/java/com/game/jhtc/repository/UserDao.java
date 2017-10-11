@@ -17,7 +17,19 @@ public interface UserDao {
 	
 	public void save(User user);
 	
+	/**
+	 * 根据gid查询用户信息
+	 * @param id
+	 * @return
+	 */
 	public User findById(int id);
+	
+	/**
+	 * 根据uid查询用户的gid
+	 * @param uid
+	 * @return
+	 */
+	public User findByUid(String uid);
 	
 	public void update(User user);
 	

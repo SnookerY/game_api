@@ -7,6 +7,7 @@ import com.game.jhtc.entity.User;
 
 /**
  * 用户表的Dao组件
+ * 接口的查询方法
  * @author snooker
  *
  */

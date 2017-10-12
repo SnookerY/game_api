@@ -12,7 +12,7 @@ import com.game.jhtc.entity.User;
 import com.game.jhtc.repository.UserDao;
 
 /**
- * UserDao测试类
+ * UserDao中的方法测试类
  * @author snooker
  *
  */
@@ -24,6 +24,7 @@ public class TestUser {
 	 * 测试查询全部
 	 */
 	@Test
+	@SuppressWarnings("resource")
 	public void testFindAll(){
 		String conf = "applicationContext.xml";
 		ApplicationContext ac = new ClassPathXmlApplicationContext(conf);
@@ -40,20 +41,22 @@ public class TestUser {
 	}
 	
 	/**
-	 * 测试查询一个（根据gid）
+	 * 测试查询玩家rank分数（根据id）
 	 */
 	@Test
+	@SuppressWarnings("resource")
 	public void testById(){
 		String conf = "applicationContext.xml";
 		ApplicationContext ac = new ClassPathXmlApplicationContext(conf);
 		UserDao dao = ac.getBean(UserDao.class);
-		logger.info(dao.findById(2));
+		logger.info(dao.findById(1518181));
 	}
 	
 	/**
 	 * 测试添加方法
 	 */
 	@Test
+	@SuppressWarnings("resource")
 	public void testInsert(){
 		
 		String conf = "applicationContext.xml";
@@ -73,6 +76,7 @@ public class TestUser {
 	 * 测试修改方法
 	 */
 	@Test
+	@SuppressWarnings("resource")
 	public void testUpdate(){
 		
 		String conf = "applicationContext.xml";
@@ -89,11 +93,12 @@ public class TestUser {
 	 * 测试json转化
 	 */
 	@Test
+	@SuppressWarnings("resource")
 	public void testFindById(){
 		String conf = "applicationContext.xml";
 		ApplicationContext ac = new ClassPathXmlApplicationContext(conf);
 		UserDao dao = ac.getBean(UserDao.class);
-		User user = dao.findById(1);
+		User user = dao.findById(4598491);
 		logger.info(JSON.toJSONString(user));
 	}
 	
@@ -101,6 +106,7 @@ public class TestUser {
 	 * 测试json转化
 	 */
 	@Test
+	@SuppressWarnings("resource")
 	public void testFindByUid(){
 		String conf = "applicationContext.xml";
 		ApplicationContext ac = new ClassPathXmlApplicationContext(conf);

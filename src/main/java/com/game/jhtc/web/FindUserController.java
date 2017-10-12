@@ -28,7 +28,7 @@ public class FindUserController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value="/queryId", method = RequestMethod.GET)
+	@RequestMapping(value="/queryScore", method = RequestMethod.GET)
 	@ResponseBody
 	public User queryUser(@RequestParam(value="id",required=true) Integer id){
 		

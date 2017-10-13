@@ -41,15 +41,13 @@ import com.game.jhtc.util.Base64Util;
 		 */
 		@RequestMapping(value="/addUser", method = RequestMethod.POST)
 		@ResponseBody
-		public String insertUser(@RequestParam(value="id", required=true) Integer id,
-							     @RequestParam(value="uid", required=true) String uid,
+		public String insertUser(@RequestParam(value="uid", required=true) String uid,
 							     @RequestParam(value="nick", required=true) String nick,
 							     @RequestParam(value="score", required=true) Integer score,
 							     @RequestParam(value="length", required=true) Integer length){
 			
 			User user = new User();
 			
-			user.setId(id);
 			user.setUid(uid);
 			user.setNick(decodeBase64(nick));
 			user.setScore(score);

@@ -41,15 +41,15 @@ public class TestUser {
 	}
 	
 	/**
-	 * 测试查询玩家rank分数（根据id）
+	 * 测试查询玩家rank分数（根据gid）
 	 */
 	@Test
 	@SuppressWarnings("resource")
-	public void testById(){
+	public void testByGid(){
 		String conf = "applicationContext.xml";
 		ApplicationContext ac = new ClassPathXmlApplicationContext(conf);
 		UserDao dao = ac.getBean(UserDao.class);
-		logger.info(dao.findById(1518181));
+		logger.info(dao.findByGid(4));
 	}
 	
 	/**
@@ -86,7 +86,7 @@ public class TestUser {
 		user.setGid(6);
 		user.setNick("乐芙兰");
 		dao.update(user);
-		logger.info(dao.findById(6));
+		logger.info(dao.findByGid(6));
 	}
 	
 	/**
@@ -94,11 +94,11 @@ public class TestUser {
 	 */
 	@Test
 	@SuppressWarnings("resource")
-	public void testFindById(){
+	public void testFindByGid(){
 		String conf = "applicationContext.xml";
 		ApplicationContext ac = new ClassPathXmlApplicationContext(conf);
 		UserDao dao = ac.getBean(UserDao.class);
-		User user = dao.findById(4598491);
+		User user = dao.findByGid(1);
 		logger.info(JSON.toJSONString(user));
 	}
 	

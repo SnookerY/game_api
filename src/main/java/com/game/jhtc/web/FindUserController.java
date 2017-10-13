@@ -1,12 +1,18 @@
 package com.game.jhtc.web;
 
+import java.util.Map;
+import java.util.Set;
+
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONObject;
 import com.game.jhtc.entity.User;
 import com.game.jhtc.repository.UserDao;
 
@@ -24,16 +30,37 @@ public class FindUserController {
 
 	/**Spring MVC RESTful JSON**/
 	/**
-	 * 根据玩家id查询玩家rank信息
-	 * @param id
+	 * 根据玩家gid查询玩家rank信息
+	 * 传统形式
+	 * @param gid
 	 * @return
 	 */
+	/**	
 	@RequestMapping(value="/queryScore", method = RequestMethod.GET)
 	@ResponseBody
-	public User queryUser(@RequestParam(value="id",required=true) Integer id){
+	public User queryUser(@RequestParam(value="gid",required=true) Integer gid){
 		
-		System.out.println("id:" + id);
-		return userDao.findById(id);
+		System.out.println("gid:" + gid);
+		return userDao.findByGid(gid);
+	}*/
+	
+	/**
+	 * 根据玩家gid查询玩家rank信息
+	 * 解析json字符串
+	 * @param gid
+	 * @return
+	 */
+	@Test
+	@RequestMapping(value="/queryScore", method = RequestMethod.GET)
+	@ResponseBody
+	@SuppressWarnings("unchecked")
+	public String queryUser(@RequestBody String gid){
+		
+		System.out.println(gid);
+		JSONObject jsonObject = new JSONObject();
+		Map<String,Object> map = (Map<String,Object>)jsonObject.parse(gid);
+		System.out.println(map);
+		return "success";
 	}
 	
 	/**

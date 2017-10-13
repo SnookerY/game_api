@@ -15,23 +15,11 @@ import com.game.jhtc.entity.User;
 public interface UserDao {
 
 	/**
-	 * 查询用户全部信息
-	 * @return
-	 */
-	public List<User> findAll();
-	
-	/**
-	 * 根据请求参数保存用户信息
-	 * @param users
-	 */
-	public void saveUser(User users);
-	
-	/**
 	 * 根据gid查询用户信息
-	 * @param id
+	 * @param gid
 	 * @return
 	 */
-	public User findById(int id);
+	public User findByGid(int gid);
 	
 	/**
 	 * 根据uid查询用户的gid
@@ -41,9 +29,23 @@ public interface UserDao {
 	public User findByUid(String uid);
 	
 	/**
+	 * 根据请求参数保存用户信息
+	 * @param users
+	 */
+	public void saveUser(User users);
+	
+	
+	
+	/**
 	 * 根据id修改玩家昵称nick
 	 * @param user
 	 */
 	public void update(User user);
+	
+	/**
+	 * 查询用户全部信息
+	 * @return
+	 */
+	public List<User> findAll();
 	
 }

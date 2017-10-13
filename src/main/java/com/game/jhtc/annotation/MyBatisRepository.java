@@ -4,7 +4,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  * MyBatis使用该注解表示Dao
- * @author jay
+ * @author snooker
  *
  */
 @Repository

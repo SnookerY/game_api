@@ -24,11 +24,16 @@ public class UpdateUserController {
 	@Autowired
 	private UserDao userDao;
 
+	/**
+	 * base64编码
+	 * @param str
+	 * @return
+	 */
 	private String decodeBase64(String str){
 		
 		try {
 			byte[] bytes = Base64Util.decode(str.getBytes("utf-8"));
-			return new String(bytes, "utf-8")/*.replaceAll("\0", "")*/;
+			return new String(bytes, "utf-8").replaceAll("\0", "");
 		} catch (Exception e) {
 		}
 	    	return str;
@@ -46,7 +51,7 @@ public class UpdateUserController {
 							@RequestParam(value="nick",required=true) String nick){
 		
 		User user = new User();
-		user.setId(id);
+		//user.setId(id);
 		user.setNick(decodeBase64(nick));
 		
 		userDao.update(user);

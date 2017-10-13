@@ -52,4 +52,14 @@
 	
 	<!-- 支持RESTfuk访问静态资源 -->
 	<mvc:default-servlet-handler/>
+	
+	<!-- 此处乃进行json数据传输的关键,当配置 -->
+    <!--<bean id="jsonMapping" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="jsonMapping"/>
+            </list>
+        </property>
+    </bean> -->
 </beans>

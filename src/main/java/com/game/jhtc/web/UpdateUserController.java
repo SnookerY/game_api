@@ -13,7 +13,7 @@ import com.game.jhtc.repository.UserDao;
 import com.game.jhtc.util.Base64Util;
 
 /**
- * 用户修改接口
+ * 贪吃蛇玩家数据上报接口
  * @author snooker
  * @create 2017-10-11
  */
@@ -41,19 +41,22 @@ public class UpdateUserController {
 	
 	/**Spring MVC RESTful JSON**/
 	/**
-	 * 根据玩家id修改玩家昵称信息
-	 * @param id
+	 * 根据玩家gid修改玩家昵称信息(玩家数据上报)
+	 * @param gid
 	 * @return
 	 */
 	@RequestMapping(value="/updateUser", method = RequestMethod.POST)
 	@ResponseBody
-	public String queryUser(@RequestParam(value="id",required=true) Integer id,
-							@RequestParam(value="nick",required=true) String nick){
+	public String queryUser(@RequestParam(value="gid",required=true) Integer gid,
+							@RequestParam(value="nick",required=true) String nick,
+							@RequestParam(value="score",required=true) Integer score,
+							@RequestParam(value="length",required=true) Integer length){
 		
 		User user = new User();
-		//user.setId(id);
-		user.setNick(decodeBase64(nick));
-		
+		//user.setId(gid);
+		user.setNick(nick);
+		user.setScore(score);
+		user.setLength(length);
 		userDao.update(user);
 		return "success";
 	}

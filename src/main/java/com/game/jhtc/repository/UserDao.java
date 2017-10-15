@@ -22,28 +22,20 @@ public interface UserDao {
 	public User findByGid(int gid);
 	
 	/**
-	 * 根据uid查询用户的gid
-	 * @param uid
-	 * @return
-	 */
-	public User findByUid(String uid);
-	
-	/**
-	 * 根据请求参数保存用户信息
+	 * 根据客户端传来的uid自动生成gid，
+	 * 其余数据默认生成，再由客户端通过修改接口上报玩家数据
 	 * @param users
 	 */
-	public void saveUser(User users);
-	
-	
+	public void createGid(User user);
 	
 	/**
-	 * 根据id修改玩家昵称nick
+	 * 根据gid修改玩家rank数据信息
 	 * @param user
 	 */
 	public void update(User user);
 	
 	/**
-	 * 查询用户全部信息
+	 * 查询用户全部信息（前50名）
 	 * @return
 	 */
 	public List<User> findAll();

@@ -67,7 +67,7 @@ public class TestUser {
 		user.setNick("霞");
 		user.setScore(98);
 		user.setLength(1500000);
-		dao.saveUser(user);
+		dao.createGid(user);
 		//logger.info(dao.findById(6));
 		
 	}
@@ -102,16 +102,4 @@ public class TestUser {
 		logger.info(JSON.toJSONString(user));
 	}
 	
-	/**
-	 * 测试json转化
-	 */
-	@Test
-	@SuppressWarnings("resource")
-	public void testFindByUid(){
-		String conf = "applicationContext.xml";
-		ApplicationContext ac = new ClassPathXmlApplicationContext(conf);
-		UserDao dao = ac.getBean(UserDao.class);
-		User user = dao.findByUid("xsdsda6");
-		logger.info(JSON.toJSONString(user));
-	}
 }

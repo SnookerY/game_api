@@ -12,13 +12,13 @@ import com.game.jhtc.repository.UserDao;
 import com.game.jhtc.util.Base64Util;
 
 	/**
-	 * 玩家数据上报接口
+	 * 根据客户端发送的uid自动生成gid
 	 * @author snooker
 	 * @create 2017-10-11
 	 */
 	@Controller
 	@RequestMapping("/snake")
-	public class InserUserController {
+	public class CreateGidController {
 		
 		@Autowired
 		private UserDao userDao;
@@ -35,28 +35,22 @@ import com.game.jhtc.util.Base64Util;
 
 		/**Spring MVC RESTful JSON**/
 		/**
-		 * 将客户端请求的用户数据存入数据库
-		 * @param gid
+		 * 通过uid生成gid
+		 * @param uid
 		 * @return
 		 */
-		@RequestMapping(value="/addUser", method = RequestMethod.POST)
+		@RequestMapping(value="/createGid", method = RequestMethod.POST)
 		@ResponseBody
-		public String insertUser(@RequestParam(value="uid", required=true) String uid,
-							     @RequestParam(value="nick", required=true) String nick,
-							     @RequestParam(value="score", required=true) Integer score,
-							     @RequestParam(value="length", required=true) Integer length){
+		public String insertUid(@RequestParam(value="uid", required=true) String uid){
 			
 			User user = new User();
 			
 			user.setUid(uid);
-			user.setNick(decodeBase64(nick));
-			user.setScore(score);
-			user.setLength(length);
 			
 			/**
 			 * 调用添加方法，将数据存入数据库
 			 */
-			userDao.saveUser(user);
+			userDao.createGid(user);
 			
 			return "success";
 		}

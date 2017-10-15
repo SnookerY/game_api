@@ -49,7 +49,7 @@ public class TestUser {
 		String conf = "applicationContext.xml";
 		ApplicationContext ac = new ClassPathXmlApplicationContext(conf);
 		UserDao dao = ac.getBean(UserDao.class);
-		logger.info(dao.findByGid(4));
+		logger.info(dao.findByGid(1));
 	}
 	
 	/**

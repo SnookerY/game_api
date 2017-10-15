@@ -12,10 +12,12 @@
 	
 	<!-- 配置数据源 -->
 	<bean id="ds" class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="url" value="jdbc:mysql://localhost:3306/xinman"/>
+		<!-- <property name="url" value="jdbc:mysql://localhost:3306/xinman"/> -->
+		<property name="url" value="jdbc:mysql://localhost:3306/test"/>
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		<property name="username" value="root"/>
-		<property name="password" value="root1234"/>
+		<!-- <property name="password" value="root1234"/> -->
+		<property name="password" value=""/>
 	</bean>	
 	
 	<!-- 配置SqlSessionFactory -->

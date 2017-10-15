@@ -1,7 +1,6 @@
 package com.game.jhtc.web;
 
 import java.util.Map;
-import java.util.Set;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,14 +34,14 @@ public class FindUserController {
 	 * @param gid
 	 * @return
 	 */
-	/**	
+	
 	@RequestMapping(value="/queryScore", method = RequestMethod.GET)
 	@ResponseBody
 	public User queryUser(@RequestParam(value="gid",required=true) Integer gid){
 		
 		System.out.println("gid:" + gid);
 		return userDao.findByGid(gid);
-	}*/
+	}
 	
 	/**
 	 * 根据玩家gid查询玩家rank信息
@@ -50,8 +49,7 @@ public class FindUserController {
 	 * @param gid
 	 * @return
 	 */
-	@Test
-	@RequestMapping(value="/queryScore", method = RequestMethod.GET)
+	/*@RequestMapping(value="/queryScore", method = RequestMethod.GET)
 	@ResponseBody
 	@SuppressWarnings("unchecked")
 	public String queryUser(@RequestBody String gid){
@@ -61,19 +59,19 @@ public class FindUserController {
 		Map<String,Object> map = (Map<String,Object>)jsonObject.parse(gid);
 		System.out.println(map);
 		return "success";
-	}
+	}*/
 	
 	/**
 	 * 根据玩家uid查询玩家gid
 	 * @param uid
 	 * @return
 	 */
-	@RequestMapping(value="/queryUid", method = RequestMethod.POST)
+	/*@RequestMapping(value="/queryUid", method = RequestMethod.POST)
 	@ResponseBody
 	public User queryGid(@RequestParam(value="uid",required=true) String uid){
 		
 		System.out.println("uid:" + uid);
 		return userDao.findByUid(uid);
-	}
+	}*/
 	
 }

@@ -1,6 +1,8 @@
 package com.game.jhtc.web;
 
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,7 @@ import com.game.jhtc.util.Base64Util;
  */
 @Controller
 @RequestMapping("/snake")
+@Transactional
 public class UpdateUserController {
 	
 	@Autowired

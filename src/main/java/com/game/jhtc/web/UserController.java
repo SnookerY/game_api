@@ -3,6 +3,7 @@ package com.game.jhtc.web;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,7 @@ import com.game.jhtc.repository.UserDao;
  */
 @Controller
 @RequestMapping("/user")
+@Transactional
 public class UserController {
 
 	@Resource

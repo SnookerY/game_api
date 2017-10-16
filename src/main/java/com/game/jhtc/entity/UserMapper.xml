@@ -5,10 +5,10 @@
 
   <!-- 查询分数前50名的玩家信息 -->
   <select id="findAll" resultType="com.game.jhtc.entity.User">
-    select * from suser_info where 1=1 order by score desc limit 50 ;
+    select gid, nick, score from suser_info where 1=1 order by score desc limit 50;
   </select>
   
-  <!-- 根据gid查询玩家信息 -->
+  <!-- 根据gid查询玩家全部信息 -->
   <select id="findByGid"
   	parameterType="java.lang.Integer"
   	resultType="com.game.jhtc.entity.User">

@@ -4,16 +4,19 @@ package com.game.jhtc.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import net.sf.json.JSONArray;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSON;
 import com.game.jhtc.entity.User;
 import com.game.jhtc.repository.UserDao;
 
@@ -24,10 +27,13 @@ import com.game.jhtc.repository.UserDao;
  */
 @Controller
 @RequestMapping("/snake")
+@Transactional
 public class FindUserController {
 
 	@Autowired
 	private UserDao userDao;
+	
+	private static Logger logger = Logger.getLogger(FindUserController.class);
 
 	/**Spring MVC RESTful JSON**/
 	/**
@@ -39,7 +45,7 @@ public class FindUserController {
 	@ResponseBody
 	public User queryScore(@RequestParam(value="gid",required=true) Integer gid){
 		
-		System.out.println("gid:" + gid);
+		logger.info("gid:" + gid);
 		return userDao.findByGid(gid);
 	}
 	
@@ -64,12 +70,14 @@ public class FindUserController {
 	/**
 	 * 查询玩家rank排名（前50名）
 	 */
-	@RequestMapping(value="/queryRank", method=RequestMethod.GET)
-	public String queryRank(){
+	@RequestMapping(value="/queryRank/{rank}", method=RequestMethod.GET, produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String queryRank(@PathVariable String rank){
 		
 		List<User> list = new ArrayList<User>();
 		list = userDao.findAll();
 		JSONArray jsonArray = JSONArray.fromObject(list);
 		return jsonArray.toString();
 	}
+	
 }

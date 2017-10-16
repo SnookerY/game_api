@@ -1,6 +1,9 @@
 package com.game.jhtc.test;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import net.sf.json.JSONArray;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -19,6 +22,7 @@ import com.game.jhtc.repository.UserDao;
 public class TestUser {
 	
 	private static Logger logger = Logger.getLogger(TestUser.class);
+	
 
 	/**
 	 * 测试查询全部
@@ -101,5 +105,20 @@ public class TestUser {
 		User user = dao.findByGid(1);
 		logger.info(JSON.toJSONString(user));
 	}
+	
+	/**
+	 * 将list集合转化为json集合对象
+	 */
+	@Test
+    public void testCreateJsonArray() {
+		String conf = "applicationContext.xml";
+		ApplicationContext ac = new ClassPathXmlApplicationContext(conf);
+		UserDao dao = ac.getBean(UserDao.class);
+		List<User> list = new ArrayList<User>();
+		list = dao.findAll();
+        //创建json集合
+        JSONArray jsonArray = JSONArray.fromObject(list);
+        System.out.println(jsonArray.toString());
+    }
 	
 }

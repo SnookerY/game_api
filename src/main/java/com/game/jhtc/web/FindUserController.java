@@ -1,6 +1,11 @@
 package com.game.jhtc.web;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.sf.json.JSONArray;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
 import com.game.jhtc.entity.User;
 import com.game.jhtc.repository.UserDao;
 
@@ -26,13 +32,12 @@ public class FindUserController {
 	/**Spring MVC RESTful JSON**/
 	/**
 	 * 根据玩家gid查询玩家rank信息
-	 * 传统形式
 	 * @param gid
 	 * @return
 	 */
 	@RequestMapping(value="/queryScore", method = RequestMethod.GET)
 	@ResponseBody
-	public User queryUser(@RequestParam(value="gid",required=true) Integer gid){
+	public User queryScore(@RequestParam(value="gid",required=true) Integer gid){
 		
 		System.out.println("gid:" + gid);
 		return userDao.findByGid(gid);
@@ -57,16 +62,14 @@ public class FindUserController {
 	}*/
 	
 	/**
-	 * 根据玩家uid查询玩家gid
-	 * @param uid
-	 * @return
+	 * 查询玩家rank排名（前50名）
 	 */
-	/*@RequestMapping(value="/queryUid", method = RequestMethod.POST)
-	@ResponseBody
-	public User queryGid(@RequestParam(value="uid",required=true) String uid){
+	@RequestMapping(value="/queryRank", method=RequestMethod.GET)
+	public String queryRank(){
 		
-		System.out.println("uid:" + uid);
-		return userDao.findByUid(uid);
-	}*/
-	
+		List<User> list = new ArrayList<User>();
+		list = userDao.findAll();
+		JSONArray jsonArray = JSONArray.fromObject(list);
+		return jsonArray.toString();
+	}
 }

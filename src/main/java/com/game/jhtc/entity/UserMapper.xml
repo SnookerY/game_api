@@ -3,9 +3,9 @@
 
 <mapper namespace="com.game.jhtc.repository.UserDao" >
 
-  <!-- 查询全部的用户 ，查询接口没有用到-->
+  <!-- 查询分数前50名的玩家信息 -->
   <select id="findAll" resultType="com.game.jhtc.entity.User">
-    select * from suser_info where 1=1 order by score desc
+    select * from suser_info where 1=1 order by score desc limit 50 ;
   </select>
   
   <!-- 根据gid查询玩家信息 -->
@@ -16,14 +16,6 @@
   			where gid=#{gid}
   </select>
   
-  <!-- 根据id查询玩家rank分数，需求改动不再使用 -->
-  <!-- <select id="findById"
-  	parameterType="java.lang.Integer"
-  	resultType="com.game.jhtc.entity.User">
-  		select id, nick, score from suser_info
-  			where id=#{id}
-  </select> -->
-  
   <!-- 根据客户端传来的uid生成gid，其他数据默认生成 -->
   <insert id="createGid"
   	parameterType="com.game.jhtc.entity.User">
@@ -31,11 +23,13 @@
   		values(#{uid})	
   </insert>
   
- <!--  根据玩家gid修改用户数据 -->
+ <!--  根据玩家gid修改用户数据 （数据上报接口）-->
   <update id="update" parameterType="com.game.jhtc.entity.User">
   	update suser_info set
-  		nick=#{nick} where
-  		 gid=#{gid}
+  		nick=#{nick},
+  		score=#{score},
+  		length=#{length} 
+  	where gid=#{gid}
   </update>
   
 </mapper>

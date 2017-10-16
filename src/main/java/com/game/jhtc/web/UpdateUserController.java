@@ -51,7 +51,6 @@ public class UpdateUserController {
 							@RequestParam(value="nick",required=true) String nick,
 							@RequestParam(value="score",required=true) Integer score,
 							@RequestParam(value="length",required=true) Integer length){
-		
 		//录入数据
 		User user = new User();
 		user.setGid(gid);

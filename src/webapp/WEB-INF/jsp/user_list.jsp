@@ -8,7 +8,6 @@
 <body>
 	<table width="60%" border="1" cellpadding="2" cellspacing="0" align="center">
 		<tr>
-			<th>玩家id</th>
 			<th>唯一码</th>
 			<th>游戏id</th>
 			<th>玩家昵称</th>
@@ -17,7 +16,6 @@
 		</tr>
 		<c:forEach items="${users }" var="user">
 			<tr>
-				<td>${user.id }</td>
 				<td>${user.uid }</td>
 				<td>${user.gid }</td>
 				<td>${user.nick }</td>

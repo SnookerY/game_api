@@ -39,7 +39,7 @@ import com.game.jhtc.util.Base64Util;
 		 * @param uid
 		 * @return
 		 */
-		@RequestMapping(value="/createGid", method = RequestMethod.POST)
+		@RequestMapping(value="/createGid", method = RequestMethod.GET)
 		@ResponseBody
 		public String insertUid(@RequestParam(value="uid", required=true) String uid){
 			

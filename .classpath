@@ -53,5 +53,6 @@
 	<classpathentry kind="lib" path="src/webapp/WEB-INF/lib/jackson-annotations-2.6.2.jar"/>
 	<classpathentry kind="lib" path="src/webapp/WEB-INF/lib/jackson-databind-2.6.2.jar"/>
 	<classpathentry kind="lib" path="src/webapp/WEB-INF/lib/json-lib-2.4-jdk15.jar"/>
+	<classpathentry kind="lib" path="src/webapp/WEB-INF/lib/gson-2.8.0.jar"/>
 	<classpathentry kind="output" path="src/webapp/WEB-INF/classes"/>
 </classpath>

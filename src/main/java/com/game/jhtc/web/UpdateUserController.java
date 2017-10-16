@@ -45,18 +45,20 @@ public class UpdateUserController {
 	 * @param gid
 	 * @return
 	 */
-	@RequestMapping(value="/updateUser", method = RequestMethod.POST)
+	@RequestMapping(value="/updateUser", method = RequestMethod.GET)
 	@ResponseBody
 	public String queryUser(@RequestParam(value="gid",required=true) Integer gid,
 							@RequestParam(value="nick",required=true) String nick,
 							@RequestParam(value="score",required=true) Integer score,
 							@RequestParam(value="length",required=true) Integer length){
 		
+		//录入数据
 		User user = new User();
-		//user.setId(gid);
+		user.setGid(gid);
 		user.setNick(nick);
 		user.setScore(score);
 		user.setLength(length);
+		
 		userDao.update(user);
 		return "success";
 	}

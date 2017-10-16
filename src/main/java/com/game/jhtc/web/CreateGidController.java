@@ -45,17 +45,21 @@ import com.game.jhtc.util.Base64Util;
 		@RequestMapping(value="/createGid", method = RequestMethod.GET)
 		@ResponseBody
 		public String createGid(@RequestParam(value="uid", required=true) String uid){
-			
-			User user = new User();
-			
-			user.setUid(uid);
-			
-			/**
-			 * 调用添加方法，将数据存入数据库
-			 */
-			userDao.createGid(user);
-			
-			return "success";
+			try{
+				
+				if(uid!=null && uid!=""){
+					
+					User user = new User();
+					user.setUid(uid);  
+					userDao.createGid(user);
+					return "success";
+				}else{
+					return "Invalid request param !";
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+				return "Invalid request param !";
+			}
 		}
 	}
 

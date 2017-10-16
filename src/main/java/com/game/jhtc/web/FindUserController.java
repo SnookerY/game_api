@@ -45,13 +45,39 @@ public class FindUserController {
 	@ResponseBody
 	public User queryScore(@RequestParam(value="gid",required=true) Integer gid){
 		
-		logger.info("gid:" + gid);
-		return userDao.findByGid(gid);
+		try{
+			if(!(gid.equals(null))){
+				logger.info("gid:" + gid);
+				return userDao.findByGid(gid);
+			}else{
+				return null;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	/**
+	 * 查询玩家rank排名（前50名）
+	 */
+	@RequestMapping(value="/queryRank/{rank}", method=RequestMethod.GET, produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String queryRank(@PathVariable String rank){
+		try{
+			List<User> list = new ArrayList<User>();
+			list = userDao.findAll();
+			JSONArray jsonArray = JSONArray.fromObject(list);
+			return jsonArray.toString();
+		}catch(Exception e){
+			e.printStackTrace();
+			return "Invalid request param !";
+		}
 	}
 	
 	/**
 	 * 根据玩家gid查询玩家rank信息
-	 * 解析json字符串
+	 * 解析json字符串（需求变更不再使用）
 	 * @param gid
 	 * @return
 	 */
@@ -66,18 +92,4 @@ public class FindUserController {
 		Integer gid = (Integer)jsonObject.fromObject(str).get("gid");
 		return userDao.findByGid(gid);
 	}*/
-	
-	/**
-	 * 查询玩家rank排名（前50名）
-	 */
-	@RequestMapping(value="/queryRank/{rank}", method=RequestMethod.GET, produces = "text/json;charset=UTF-8")
-	@ResponseBody
-	public String queryRank(@PathVariable String rank){
-		
-		List<User> list = new ArrayList<User>();
-		list = userDao.findAll();
-		JSONArray jsonArray = JSONArray.fromObject(list);
-		return jsonArray.toString();
-	}
-	
 }

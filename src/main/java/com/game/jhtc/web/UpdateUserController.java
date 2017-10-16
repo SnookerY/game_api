@@ -54,15 +54,25 @@ public class UpdateUserController {
 							@RequestParam(value="nick",required=true) String nick,
 							@RequestParam(value="score",required=true) Integer score,
 							@RequestParam(value="length",required=true) Integer length){
-		//录入数据
-		User user = new User();
-		user.setGid(gid);
-		user.setNick(nick);
-		user.setScore(score);
-		user.setLength(length);
-		
-		userDao.update(user);
-		return "success";
+		try{
+			if(!(gid.equals(null))){
+				//录入数据
+				User user = new User();
+				user.setGid(gid);
+				user.setNick(nick);
+				user.setScore(score);
+				user.setLength(length);
+				
+				userDao.update(user);
+				return "success";
+			}else{
+				return "Invalid request param !";
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			return "Invalid request param !";
+		}
 	}
 	
 }

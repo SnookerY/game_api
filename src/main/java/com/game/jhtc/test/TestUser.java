@@ -57,6 +57,20 @@ public class TestUser {
 	}
 	
 	/**
+	 * 测试根据uid查询玩家gid
+	 */
+	@Test
+	@SuppressWarnings("resource")
+	public void testFindByUid(){
+		String conf = "applicationContext.xml";
+		ApplicationContext ac = new ClassPathXmlApplicationContext(conf);
+		UserDao dao = ac.getBean(UserDao.class);
+		User user = dao.findByUid("jieac");
+		logger.info(JSON.toJSONString(user));
+	}
+	
+	
+	/**
 	 * 测试添加方法
 	 */
 	@Test

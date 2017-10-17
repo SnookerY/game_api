@@ -23,6 +23,14 @@
   		values(#{uid})	
   </insert>
   
+  <!-- 根据uid查询gid -->
+  <select id="findByUid"
+  	parameterType="java.lang.String"
+  	resultType="com.game.jhtc.entity.User">
+  		select gid from suser_info 
+  			where uid=#{uid}
+  </select>
+  
  <!--  根据玩家gid修改用户数据 （数据上报接口）-->
   <update id="update" parameterType="com.game.jhtc.entity.User">
   	update suser_info set

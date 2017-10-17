@@ -8,7 +8,6 @@ import javax.transaction.Transactional;
 
 import net.sf.json.JSONArray;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONObject;
 import com.game.jhtc.entity.User;
 import com.game.jhtc.repository.UserDao;
 
@@ -33,8 +33,6 @@ public class FindUserController {
 	@Autowired
 	private UserDao userDao;
 	
-	private static Logger logger = Logger.getLogger(FindUserController.class);
-
 	/**Spring MVC RESTful JSON**/
 	/**
 	 * 根据玩家gid查询玩家rank信息
@@ -43,18 +41,41 @@ public class FindUserController {
 	 */
 	@RequestMapping(value="/queryScore", method = RequestMethod.GET)
 	@ResponseBody
-	public User queryScore(@RequestParam(value="gid",required=true) Integer gid){
+	public String queryScore(@RequestParam(value="gid",required=true) Integer gid){
 		
 		try{
 			if(!(gid.equals(null))){
-				logger.info("gid:" + gid);
-				return userDao.findByGid(gid);
+				
+				User user = new User();
+				user = userDao.findByGid(gid);
+				
+				Object json = JSONObject.toJSON(user);  
+			    JSONObject objData = new JSONObject();   
+			    
+			    objData.put("ret", 200);    
+			    objData.put("data", json);  
+			    objData.put("msg", "success");  
+				
+				return objData.toString();
 			}else{
-				return null;
+				
+				JSONObject objData = new JSONObject();   
+			    objData.put("ret", 400);    
+			    objData.put("data", "[]");  
+			    objData.put("msg", "fail"); 
+				
+			    return objData.toString();
 			}
 		}catch(Exception e){
+			
 			e.printStackTrace();
-			return null;
+			
+			JSONObject objData = new JSONObject();   
+		    objData.put("ret", 400);    
+		    objData.put("data", "[]");  
+		    objData.put("msg", "fail"); 
+			
+		    return objData.toString();
 		}
 	}
 	
@@ -71,7 +92,13 @@ public class FindUserController {
 			return jsonArray.toString();
 		}catch(Exception e){
 			e.printStackTrace();
-			return "Invalid request param !";
+			
+			JSONObject objData = new JSONObject();   
+		    objData.put("ret", 400);    
+		    objData.put("data", "[]");  
+		    objData.put("msg", "fail"); 
+			
+		    return objData.toString();
 		}
 	}
 	

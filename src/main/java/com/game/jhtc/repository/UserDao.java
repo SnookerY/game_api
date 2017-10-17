@@ -22,6 +22,13 @@ public interface UserDao {
 	public User findByGid(int gid);
 	
 	/**
+	 * 根据uid查询用户信息
+	 * @param uid
+	 * @return
+	 */
+	public User findByUid(String uid);
+	
+	/**
 	 * 根据客户端传来的uid自动生成gid，
 	 * 其余数据默认生成，再由客户端通过修改接口上报玩家数据
 	 * @param users

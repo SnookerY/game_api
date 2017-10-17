@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONObject;
 import com.game.jhtc.entity.User;
 import com.game.jhtc.repository.UserDao;
-import com.game.jhtc.util.Base64Util;
 
 	/**
 	 * 根据客户端发送的uid自动生成gid
@@ -26,7 +26,7 @@ import com.game.jhtc.util.Base64Util;
 		@Autowired
 		private UserDao userDao;
 		
-		private String decodeBase64(String str){
+		/*private String decodeBase64(String str){
 			
 			try {
 				byte[] bytes = Base64Util.decode(str.getBytes("utf-8"));
@@ -34,7 +34,7 @@ import com.game.jhtc.util.Base64Util;
 			} catch (Exception e) {
 			}
 		    	return str;
-		}
+		}*/
 
 		/**Spring MVC RESTful JSON**/
 		/**
@@ -52,14 +52,38 @@ import com.game.jhtc.util.Base64Util;
 					User user = new User();
 					user.setUid(uid);  
 					userDao.createGid(user);
-					return "success";
+					user = userDao.findByUid(uid);
+					
+					Object json = JSONObject.toJSON(user);  
+				    JSONObject objData = new JSONObject();   
+				    
+				    objData.put("ret", 200);    
+				    objData.put("data", json);  
+				    objData.put("msg", "success");  
+					
+					return objData.toString();
+					
 				}else{
-					return "Invalid request param !";
+					
+					JSONObject objData = new JSONObject();   
+				    objData.put("ret", 400);    
+				    objData.put("data", "[]");  
+				    objData.put("msg", "fail"); 
+					
+				    return objData.toString();
 				}
 			}catch(Exception e){
+				
 				e.printStackTrace();
-				return "Invalid request param !";
+				
+				JSONObject objData = new JSONObject();   
+			    objData.put("ret", 400);    
+			    objData.put("data", "[]");  
+			    objData.put("msg", "fail"); 
+			    
+			    return objData.toString();
 			}
 		}
+		
 	}
 

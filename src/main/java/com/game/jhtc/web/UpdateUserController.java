@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONObject;
 import com.game.jhtc.entity.User;
 import com.game.jhtc.repository.UserDao;
-import com.game.jhtc.util.Base64Util;
 
 /**
  * 贪吃蛇玩家数据上报接口
@@ -31,7 +31,7 @@ public class UpdateUserController {
 	 * @param str
 	 * @return
 	 */
-	private String decodeBase64(String str){
+	/*private String decodeBase64(String str){
 		
 		try {
 			byte[] bytes = Base64Util.decode(str.getBytes("utf-8"));
@@ -39,7 +39,7 @@ public class UpdateUserController {
 		} catch (Exception e) {
 		}
 	    	return str;
-	}
+	}*/
 	
 	/**Spring MVC RESTful JSON**/
 	/**
@@ -63,14 +63,32 @@ public class UpdateUserController {
 				user.setLength(length);
 				
 				userDao.update(user);
-				return "success";
+				
+				JSONObject objData = new JSONObject();   
+			    objData.put("ret", 200);    
+			    objData.put("data", "[]");  
+			    objData.put("msg", "success"); 
+				
+			    return objData.toString();
 			}else{
-				return "Invalid request param !";
+				
+				JSONObject objData = new JSONObject();   
+			    objData.put("ret", 400);    
+			    objData.put("data", "[]");  
+			    objData.put("msg", "fail"); 
+				
+			    return objData.toString();
 			}
 			
 		}catch(Exception e){
 			e.printStackTrace();
-			return "Invalid request param !";
+			
+			JSONObject objData = new JSONObject();   
+		    objData.put("ret", 400);    
+		    objData.put("data", "[]");  
+		    objData.put("msg", "fail"); 
+			
+		    return objData.toString();
 		}
 	}
 	

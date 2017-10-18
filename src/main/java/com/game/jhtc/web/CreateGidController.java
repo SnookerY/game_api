@@ -45,25 +45,41 @@ import com.game.jhtc.repository.UserDao;
 		@RequestMapping(value="/createGid", method = RequestMethod.GET)
 		@ResponseBody
 		public String createGid(@RequestParam(value="uid", required=true) String uid){
-			try{
+			try {
 				
-				if(uid!=null && uid!=""){
+				if (uid!=null && uid!=""){
 					
-					User user = new User();
-					user.setUid(uid);  
-					userDao.createGid(user);
-					user = userDao.findByUid(uid);
+						User user = userDao.findByUid(uid);
+						
+					if(user != null){
+						
+						Object json = JSONObject.toJSON(user);  
+					    JSONObject objData = new JSONObject();   
+					    
+					    objData.put("ret", 200);    
+					    objData.put("data", json);  
+					    objData.put("msg", "success");  
+						
+						return objData.toString();
+						
+					} else {
+						
+						user = new User();
+						user.setUid(uid);  
+						userDao.createGid(user);
+						user = userDao.findByUid(uid);
+						
+						Object json = JSONObject.toJSON(user);  
+					    JSONObject objData = new JSONObject();   
+					    
+					    objData.put("ret", 200);    
+					    objData.put("data", json);  
+					    objData.put("msg", "success");  
+						
+						return objData.toString();
+					}
 					
-					Object json = JSONObject.toJSON(user);  
-				    JSONObject objData = new JSONObject();   
-				    
-				    objData.put("ret", 200);    
-				    objData.put("data", json);  
-				    objData.put("msg", "success");  
-					
-					return objData.toString();
-					
-				}else{
+				} else {
 					
 					JSONObject objData = new JSONObject();   
 				    objData.put("ret", 400);    
@@ -72,7 +88,8 @@ import com.game.jhtc.repository.UserDao;
 					
 				    return objData.toString();
 				}
-			}catch(Exception e){
+				
+			} catch (Exception e){
 				
 				e.printStackTrace();
 				

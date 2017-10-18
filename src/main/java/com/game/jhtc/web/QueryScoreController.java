@@ -29,12 +29,12 @@ import com.game.jhtc.repository.UserDao;
 @Controller
 @RequestMapping("/snake")
 @Transactional
-public class FindUserController {
+public class QueryScoreController {
 
 	@Autowired
 	private UserDao userDao;
 	
-	private static Logger logger = Logger.getLogger(FindUserController.class);
+	private static Logger logger = Logger.getLogger(QueryScoreController.class);
 	
 	/**Spring MVC RESTful JSON**/
 	/**

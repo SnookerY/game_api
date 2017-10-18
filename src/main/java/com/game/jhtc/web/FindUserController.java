@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import net.sf.json.JSONArray;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +34,8 @@ public class FindUserController {
 	@Autowired
 	private UserDao userDao;
 	
+	private static Logger logger = Logger.getLogger(FindUserController.class);
+	
 	/**Spring MVC RESTful JSON**/
 	/**
 	 * 根据玩家gid查询玩家rank信息
@@ -46,6 +49,8 @@ public class FindUserController {
 		try{
 			if(!(gid.equals(null))){
 				
+				logger.info(gid);
+				
 				User user = new User();
 				user = userDao.findByGid(gid);
 				
@@ -55,6 +60,8 @@ public class FindUserController {
 			    objData.put("ret", 200);    
 			    objData.put("data", json);  
 			    objData.put("msg", "success");  
+			    
+			    logger.info(objData.toString());
 				
 				return objData.toString();
 			}else{
@@ -64,16 +71,18 @@ public class FindUserController {
 			    objData.put("data", "[]");  
 			    objData.put("msg", "fail"); 
 				
+			    logger.info(objData.toString());
+			    
 			    return objData.toString();
 			}
 		}catch(Exception e){
-			
-			e.printStackTrace();
 			
 			JSONObject objData = new JSONObject();   
 		    objData.put("ret", 400);    
 		    objData.put("data", "[]");  
 		    objData.put("msg", "fail"); 
+		    
+		    logger.info(objData.toString());
 			
 		    return objData.toString();
 		}
@@ -91,7 +100,6 @@ public class FindUserController {
 			JSONArray jsonArray = JSONArray.fromObject(list);
 			return jsonArray.toString();
 		}catch(Exception e){
-			e.printStackTrace();
 			
 			JSONObject objData = new JSONObject();   
 		    objData.put("ret", 400);    

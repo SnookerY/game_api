@@ -2,6 +2,7 @@ package com.game.jhtc.web;
 
 import javax.transaction.Transactional;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,8 @@ import com.game.jhtc.entity.User;
 import com.game.jhtc.repository.UserDao;
 
 	/**
-	 * 根据客户端发送的uid自动生成gid
+	 * 功能：根据客户端发送的uid自动生成gid，先判断接收的uid是否为空值，是返回错误信息，否进一步判断uid对应的gid在数据库存不存在，
+	 * 	存在返回gid数据信息，不存在则创建gid并返回给客户端。
 	 * @author snooker
 	 * @create 2017-10-11
 	 */
@@ -25,6 +27,8 @@ import com.game.jhtc.repository.UserDao;
 		
 		@Autowired
 		private UserDao userDao;
+		
+		private static Logger logger = Logger.getLogger(CreateGidController.class);
 		
 		/*private String decodeBase64(String str){
 			
@@ -48,6 +52,8 @@ import com.game.jhtc.repository.UserDao;
 			try {
 				
 				if (uid!=null && uid!=""){
+						
+						logger.info(uid);
 					
 						User user = userDao.findByUid(uid);
 						
@@ -60,6 +66,8 @@ import com.game.jhtc.repository.UserDao;
 					    objData.put("data", json);  
 					    objData.put("msg", "success");  
 						
+					    logger.info(objData.toString());
+					    
 						return objData.toString();
 						
 					} else {
@@ -76,6 +84,8 @@ import com.game.jhtc.repository.UserDao;
 					    objData.put("data", json);  
 					    objData.put("msg", "success");  
 						
+					    logger.info(objData.toString());
+					    
 						return objData.toString();
 					}
 					
@@ -86,17 +96,19 @@ import com.game.jhtc.repository.UserDao;
 				    objData.put("data", "[]");  
 				    objData.put("msg", "fail"); 
 					
+				    logger.info(objData.toString());
+				    
 				    return objData.toString();
 				}
 				
 			} catch (Exception e){
 				
-				e.printStackTrace();
-				
 				JSONObject objData = new JSONObject();   
 			    objData.put("ret", 400);    
 			    objData.put("data", "[]");  
 			    objData.put("msg", "fail"); 
+			    
+			    logger.info(objData.toString());
 			    
 			    return objData.toString();
 			}

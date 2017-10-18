@@ -2,6 +2,7 @@ package com.game.jhtc.web;
 
 import javax.transaction.Transactional;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,8 @@ public class UpdateUserController {
 	
 	@Autowired
 	private UserDao userDao;
+	
+	private Logger logger = Logger.getLogger(UpdateUserController.class);
 
 	/**
 	 * base64编码
@@ -55,6 +58,9 @@ public class UpdateUserController {
 							@RequestParam(value="length",required=true) Integer length){
 		try{
 			if(!(gid.equals(null))){
+				
+				logger.info(gid);
+				
 				//录入数据
 				User user = new User();
 				user.setGid(gid);
@@ -69,6 +75,8 @@ public class UpdateUserController {
 			    objData.put("data", "[]");  
 			    objData.put("msg", "success"); 
 				
+			    logger.info(objData.toString());
+			    
 			    return objData.toString();
 			}else{
 				
@@ -77,17 +85,20 @@ public class UpdateUserController {
 			    objData.put("data", "[]");  
 			    objData.put("msg", "fail"); 
 				
+			    logger.info(objData.toString());
+			    
 			    return objData.toString();
 			}
 			
 		}catch(Exception e){
-			e.printStackTrace();
 			
 			JSONObject objData = new JSONObject();   
 		    objData.put("ret", 400);    
 		    objData.put("data", "[]");  
 		    objData.put("msg", "fail"); 
 			
+		    logger.info(objData.toString());
+		    
 		    return objData.toString();
 		}
 	}

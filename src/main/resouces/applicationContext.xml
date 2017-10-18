@@ -92,4 +92,9 @@
     	<aop:advisor advice-ref="txAdvice"
     		pointcut="within(com.game.jhtc.web..*)"/>
     </aop:config>
+    
+   <!-- 使用ehcache缓存 -->    
+   <bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">  
+     <property name="configLocation" value="classpath:ehcache.xml" />  
+   </bean>
 </beans>

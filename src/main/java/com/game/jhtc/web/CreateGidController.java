@@ -42,7 +42,7 @@ import com.game.jhtc.repository.UserDao;
 		 * @param uid
 		 * @return
 		 */
-		@RequestMapping(value="/createGid", method = RequestMethod.GET)
+		@RequestMapping(value="/createGid", method = RequestMethod.GET, produces = "text/json;charset=UTF-8")
 		@ResponseBody
 		public String createGid(@RequestParam(value="uid", required=true) String uid){
 			try {

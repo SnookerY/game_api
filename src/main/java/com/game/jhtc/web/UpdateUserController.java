@@ -47,7 +47,7 @@ public class UpdateUserController {
 	 * @param gid
 	 * @return
 	 */
-	@RequestMapping(value="/updateUser", method = RequestMethod.GET)
+	@RequestMapping(value="/updateUser", method = RequestMethod.GET, produces = "text/json;charset=UTF-8")
 	@ResponseBody
 	public String queryUser(@RequestParam(value="gid",required=true) Integer gid,
 							@RequestParam(value="nick",required=true) String nick,

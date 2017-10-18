@@ -61,29 +61,27 @@ public class FindUserController {
 			    objData.put("data", json);  
 			    objData.put("msg", "success");  
 			    
-			    logger.info(objData.toString());
+			    logger.info(json);
 				
 				return objData.toString();
-			}else{
+			} else {
 				
 				JSONObject objData = new JSONObject();   
 			    objData.put("ret", 400);    
 			    objData.put("data", "[]");  
 			    objData.put("msg", "fail"); 
 				
-			    logger.info(objData.toString());
-			    
 			    return objData.toString();
 			}
-		}catch(Exception e){
+		} catch (Exception e){
+			
+			e.getMessage();
 			
 			JSONObject objData = new JSONObject();   
 		    objData.put("ret", 400);    
 		    objData.put("data", "[]");  
 		    objData.put("msg", "fail"); 
 		    
-		    logger.info(objData.toString());
-			
 		    return objData.toString();
 		}
 	}
@@ -99,7 +97,8 @@ public class FindUserController {
 			list = userDao.findAll();
 			JSONArray jsonArray = JSONArray.fromObject(list);
 			return jsonArray.toString();
-		}catch(Exception e){
+			
+		} catch (Exception e){
 			
 			JSONObject objData = new JSONObject();   
 		    objData.put("ret", 400);    

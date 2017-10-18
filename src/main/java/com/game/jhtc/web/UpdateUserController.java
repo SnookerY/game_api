@@ -70,15 +70,16 @@ public class UpdateUserController {
 				
 				userDao.update(user);
 				
+				logger.info(user);
+				
 				JSONObject objData = new JSONObject();   
 			    objData.put("ret", 200);    
 			    objData.put("data", "[]");  
 			    objData.put("msg", "success"); 
 				
-			    logger.info(objData.toString());
-			    
 			    return objData.toString();
-			}else{
+			    
+			} else {
 				
 				JSONObject objData = new JSONObject();   
 			    objData.put("ret", 400);    
@@ -90,15 +91,15 @@ public class UpdateUserController {
 			    return objData.toString();
 			}
 			
-		}catch(Exception e){
+		} catch (Exception e){
+			
+			e.getMessage();
 			
 			JSONObject objData = new JSONObject();   
 		    objData.put("ret", 400);    
 		    objData.put("data", "[]");  
 		    objData.put("msg", "fail"); 
 			
-		    logger.info(objData.toString());
-		    
 		    return objData.toString();
 		}
 	}

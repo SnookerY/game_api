@@ -57,7 +57,7 @@ import com.game.jhtc.repository.UserDao;
 					
 						User user = userDao.findByUid(uid);
 						
-					if(user != null){
+					if (user != null){
 						
 						Object json = JSONObject.toJSON(user);  
 					    JSONObject objData = new JSONObject();   
@@ -66,7 +66,7 @@ import com.game.jhtc.repository.UserDao;
 					    objData.put("data", json);  
 					    objData.put("msg", "success");  
 						
-					    logger.info(objData.toString());
+					    logger.info(json);
 					    
 						return objData.toString();
 						
@@ -84,7 +84,7 @@ import com.game.jhtc.repository.UserDao;
 					    objData.put("data", json);  
 					    objData.put("msg", "success");  
 						
-					    logger.info(objData.toString());
+					    logger.info(json);
 					    
 						return objData.toString();
 					}
@@ -96,19 +96,17 @@ import com.game.jhtc.repository.UserDao;
 				    objData.put("data", "[]");  
 				    objData.put("msg", "fail"); 
 					
-				    logger.info(objData.toString());
-				    
 				    return objData.toString();
 				}
 				
 			} catch (Exception e){
 				
+				e.getMessage();
+				
 				JSONObject objData = new JSONObject();   
 			    objData.put("ret", 400);    
 			    objData.put("data", "[]");  
 			    objData.put("msg", "fail"); 
-			    
-			    logger.info(objData.toString());
 			    
 			    return objData.toString();
 			}

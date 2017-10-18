@@ -124,6 +124,7 @@ public class TestUser {
 	 * 将list集合转化为json集合对象
 	 */
 	@Test
+	@SuppressWarnings("resource")
     public void testCreateJsonArray() {
 		String conf = "applicationContext.xml";
 		ApplicationContext ac = new ClassPathXmlApplicationContext(conf);

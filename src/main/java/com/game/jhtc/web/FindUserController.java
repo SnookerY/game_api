@@ -39,7 +39,7 @@ public class FindUserController {
 	 * @param gid
 	 * @return
 	 */
-	@RequestMapping(value="/queryScore", method = RequestMethod.GET)
+	@RequestMapping(value="/queryScore", method = RequestMethod.GET, produces = "text/json;charset=UTF-8")
 	@ResponseBody
 	public String queryScore(@RequestParam(value="gid",required=true) Integer gid){
 		

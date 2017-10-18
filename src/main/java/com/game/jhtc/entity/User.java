@@ -1,12 +1,19 @@
 package com.game.jhtc.entity;
 
+import java.io.Serializable;
+
 /**
  * 用户表实体类
  * @author snooker
  *
  */
-public class User {
+public class User implements Serializable{
 
+	/**
+	 * 序列化对象
+	 */
+	private static final long serialVersionUID = 6403769964664353910L;
+	
 	private String uid;//唯一码
 	private Integer gid;//游戏id
 	private String nick;//玩家昵称

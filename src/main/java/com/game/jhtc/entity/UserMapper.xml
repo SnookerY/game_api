@@ -3,7 +3,7 @@
 
 <mapper namespace="com.game.jhtc.repository.UserDao" >
 
-  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />  
+  <!-- <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />   -->
 
   <!-- 查询分数前50名的玩家信息 -->
   <select id="findAll" resultType="com.game.jhtc.entity.User">

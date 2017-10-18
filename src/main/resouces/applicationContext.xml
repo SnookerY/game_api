@@ -97,15 +97,15 @@
     </aop:config>
     
    <!-- 启用缓存注解功能  --> 
-   <cache:annotation-driven cache-manager="cacheManager"/>
+   <!-- <cache:annotation-driven cache-manager="cacheManager"/> -->
     
    <!-- 缓存管理器工厂加载ehcache的配置 -->    
-   <bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">  
+  <!--  <bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">  
      <property name="configLocation" value="classpath:ehcache.xml" />  
-   </bean>
+   </bean> -->
    
    <!-- 声明缓存管理器  --> 
-   <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"> 
+   <!-- <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"> 
         <property name="cacheManager" ref="cacheManagerFactory"/> 
-   </bean>
+   </bean> -->
 </beans>

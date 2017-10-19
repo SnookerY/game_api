@@ -60,7 +60,7 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	
-	<!-- 处理请求转发 -->
+	<!-- 处理请求转发，未使用 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		 <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
 		<property name="prefix" value="/WEB-INF/jsp/"/>

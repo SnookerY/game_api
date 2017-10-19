@@ -43,8 +43,6 @@ import com.game.jhtc.repository.UserDao;
 		/**Spring MVC RESTful JSON**/
 		/**
 		 * 通过uid生成gid
-		 * @param uid
-		 * @return
 		 */
 		@RequestMapping(value="/createGid", method = RequestMethod.GET, produces = "text/json;charset=UTF-8")
 		@ResponseBody

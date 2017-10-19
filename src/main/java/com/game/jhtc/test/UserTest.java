@@ -19,9 +19,9 @@ import com.game.jhtc.repository.UserDao;
  * @author snooker
  *
  */
-public class TestUser {
+public class UserTest {
 	
-	private static Logger logger = Logger.getLogger(TestUser.class);
+	private static Logger logger = Logger.getLogger(UserTest.class);
 	
 
 	/**

@@ -14,11 +14,30 @@ public class User implements Serializable{
 	 */
 	private static final long serialVersionUID = 6403769964664353910L;
 	
-	private String uid;//唯一码
-	private Integer gid;//游戏id
-	private String nick;//玩家昵称
-	private Integer score;//玩家分数
-	private Integer length;//贪吃蛇长度
+	/**
+	 * 唯一码
+	 */
+	private String uid;
+	
+	/**
+	 * 游戏id
+	 */
+	private Integer gid;
+	
+	/**
+	 * 玩家昵称
+	 */
+	private String nick;
+	
+	/**
+	 * 玩家分数
+	 */
+	private Integer score;
+	
+	/**
+	 * 贪吃蛇长度
+	 */
+	private Integer length;
 	
 	public String getUid() {
 		return uid;

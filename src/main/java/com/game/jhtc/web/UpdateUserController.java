@@ -84,7 +84,7 @@ public class UpdateUserController {
 				JSONObject objData = new JSONObject();   
 			    objData.put("ret", 400);    
 			    objData.put("data", "[]");  
-			    objData.put("msg", "fail"); 
+			    objData.put("msg", "Invalid request param !"); 
 				
 			    logger.info(objData.toString());
 			    
@@ -98,7 +98,7 @@ public class UpdateUserController {
 			JSONObject objData = new JSONObject();   
 		    objData.put("ret", 400);    
 		    objData.put("data", "[]");  
-		    objData.put("msg", "fail"); 
+		    objData.put("msg", "Invalid request param !"); 
 			
 		    return objData.toString();
 		}

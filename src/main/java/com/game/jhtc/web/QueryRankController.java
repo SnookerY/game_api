@@ -62,7 +62,7 @@ public class QueryRankController {
 			JSONObject objData = new JSONObject();   
 		    objData.put("ret", 400);    
 		    objData.put("data", "[]");  
-		    objData.put("msg", "fail"); 
+		    objData.put("msg", "Invalid request param !"); 
 		    
 		    logger.info(objData);
 			

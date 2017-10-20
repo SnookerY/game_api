@@ -136,4 +136,14 @@ public class UserTest {
         System.out.println(jsonArray.toString());
     }
 	
+	/**
+	 * 将配置文件
+	 */
+	@Test
+    public void testXml() {
+		String conf = "applicationContext.xml";
+		ApplicationContext ac = new ClassPathXmlApplicationContext(conf);
+		System.out.println(ac);
+	}
+	
 }

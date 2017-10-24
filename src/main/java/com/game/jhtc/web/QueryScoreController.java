@@ -49,16 +49,29 @@ public class QueryScoreController {
 				User user = new User();
 				user = userDao.findByGid(gid);
 				
-				Object json = JSONObject.toJSON(user);  
-			    JSONObject objData = new JSONObject();   
-			    
-			    objData.put("ret", 200);    
-			    objData.put("data", json);  
-			    objData.put("msg", "success");  
-			    
-			    logger.info(json);
+				if (user != null) {
 				
-				return objData.toString();
+					Object json = JSONObject.toJSON(user);  
+				    JSONObject objData = new JSONObject();   
+				    
+				    objData.put("ret", 200);    
+				    objData.put("data", json);  
+				    objData.put("msg", "success");  
+				    
+				    logger.info(json);
+					
+					return objData.toString();
+				
+				} else { 
+					
+					JSONObject objData = new JSONObject();   
+				    objData.put("ret", 400);    
+				    objData.put("data", "[]");  
+				    objData.put("msg", "gid do not exist !"); 
+					
+				    return objData.toString();
+				}
+				
 			} else {
 				
 				JSONObject objData = new JSONObject();   

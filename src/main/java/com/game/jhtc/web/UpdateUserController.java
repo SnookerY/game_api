@@ -61,23 +61,37 @@ public class UpdateUserController {
 				
 				logger.info(gid);
 				
-				//录入数据
-				User user = new User();
-				user.setGid(gid);
-				user.setNick(nick);
-				user.setScore(score);
-				user.setLength(length);
+				User user = userDao.findByGid(gid);
 				
-				userDao.update(user);
-				
-				logger.info(user);
-				
-				JSONObject objData = new JSONObject();   
-			    objData.put("ret", 200);    
-			    objData.put("data", "[]");  
-			    objData.put("msg", "success"); 
-				
-			    return objData.toString();
+				if (user != null) {
+					
+					//录入数据
+					user.setGid(gid);
+					user.setNick(nick);
+					user.setScore(score);
+					user.setLength(length);
+						
+					userDao.update(user);
+						
+					logger.info(user);
+						
+					JSONObject objData = new JSONObject();   
+					objData.put("ret", 200);    
+					objData.put("data", "[]");  
+					objData.put("msg", "success"); 
+						
+					return objData.toString();
+					
+				 } else {
+					 
+					 JSONObject objData = new JSONObject();   
+					 objData.put("ret", 400);    
+					 objData.put("data", "[]");  
+					 objData.put("msg", "gid do not exist !"); 
+						
+					 return objData.toString();
+					
+				 }
 			    
 			} else {
 				

@@ -100,4 +100,12 @@
     <bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
         <property name="configLocation" value="classpath:ehcache.xml" />
     </bean>
+   
+   <!-- 自定义拦截器用于防止sql注入 --> 
+   <mvc:interceptors>
+	   <mvc:interceptor>
+	            <mvc:mapping path="/**" />
+	            <bean class="com.game.jhtc.web.SqlInjectInterceptor" />
+	   </mvc:interceptor>
+   </mvc:interceptors>
 </beans>

@@ -34,18 +34,23 @@ public class SqlInjectInterceptor implements HandlerInterceptor{
     @Override  
     public boolean preHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2) throws Exception {  
         Enumeration<String> names = arg0.getParameterNames();  
-        while(names.hasMoreElements()){  
+        while (names.hasMoreElements()) {  
+        	
             String name = names.nextElement();  
             String[] values = arg0.getParameterValues(name);  
-            for(String value: values){
-                //sql注入直接拦截
-                if(judgeSQLInject(value.toLowerCase())){  
+            
+            for (String value: values) {
+                
+            	//sql注入直接拦截
+                if (judgeSQLInject(value.toLowerCase())) {  
                 	
                     arg1.setContentType("text/html;charset=UTF-8");  
+
                     JSONObject objData = new JSONObject();   
 				    objData.put("ret", 400);    
 				    objData.put("data", "[]");  
 				    objData.put("msg", "Invalid request param !"); 
+				    
 				    arg1.getWriter().print(objData);  
                     return false;  
                 }
@@ -53,6 +58,7 @@ public class SqlInjectInterceptor implements HandlerInterceptor{
                 clearXss(value);
             }  
         }  
+        
         return true;  
     }  
 
@@ -62,16 +68,19 @@ public class SqlInjectInterceptor implements HandlerInterceptor{
      * @return 
      */  
     public boolean judgeSQLInject(String value){  
-        if(value == null || "".equals(value)){  
+        if (value == null || "".equals(value)) {  
             return false;  
         }  
+        
         String xssStr = "and|or|select|insert|update|delete|drop|truncate|%20|=|-|--|;|'|%|#|+|,|//|/| |\\|!=|(|)";  
         String[] xssArr = xssStr.split("\\|");  
-        for(int i=0;i<xssArr.length;i++){  
-            if(value.indexOf(xssArr[i])>-1){  
+        
+        for (int i=0;i<xssArr.length;i++) {  
+            if (value.indexOf(xssArr[i])>-1) {  
                 return true;  
             }  
         }  
+       
         return false;  
     }
 
@@ -85,6 +94,7 @@ public class SqlInjectInterceptor implements HandlerInterceptor{
         if (value == null || "".equals(value)) {
             return value;
         }
+        
         value = value.replaceAll("<", "<").replaceAll(">", ">");
         value = value.replaceAll("\\(", "(").replace("\\)", ")");
         value = value.replaceAll("'", "'");
@@ -92,6 +102,7 @@ public class SqlInjectInterceptor implements HandlerInterceptor{
         value = value.replaceAll("[\\\"\\\'][\\s]*javascript:(.*)[\\\"\\\']",
                 "\"\"");
         value = value.replace("script", "");
+        
         return value;
     }
 }
